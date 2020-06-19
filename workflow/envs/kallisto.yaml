@@ -5,3 +5,5 @@ channels:
 dependencies:
 - kallisto=0.46.2=h4f7b962_1
 - pip=20.1.1=py_1
+- pip:
+  - kb-python==0.24.4

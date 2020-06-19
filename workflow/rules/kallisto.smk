@@ -1,16 +1,22 @@
-localrules: install_kb
-
-
-rule install_kb:
-    input:
-        "workflow/envs/kallisto.yaml"
+        
+rule kb_ref:
     output:
-        "results/logs/kb-python.path"
-    log: "results/logs/install/kb-python.log"
+        index="resources/kb/index.idx",
+        t2g="resources/kb/t2g.txt"
+    params:
+        species=config["kb"]["species"]
+    log:
+        out="results/logs/kb_ref.out",
+        err="results/logs/kb_ref.err"
     conda:
         "../envs/kallisto.yaml"
+    threads: 1
+    resources:
+        mem_free_gb=4
     shell:
         """
-        pip install kb-python > {log} &&
-        which kb > {output}
+        kb ref \
+        -d {params.species} \
+        -i {output.index} \
+        -g {output.t2g} 2> {log.err} > {log.out}
         """
