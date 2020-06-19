@@ -14,7 +14,7 @@ rule all:
         # Subsequent target rules can be specified below. They should start with all_*.
         "resources/kb/index.idx",
         "resources/kb/t2g.txt",
-        expand(["results/kb/{sample}/output.bus"], sample=samples['sample'])
+        expand(["results/kb/{sample}"], sample=samples['sample'])
         
 
 

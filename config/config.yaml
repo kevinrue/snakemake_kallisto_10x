@@ -16,11 +16,11 @@ kb:
     # Generate loom file from count matrix
     loom: false
     # Generate h5ad file from count matrix
-    h5ad: true
+    h5ad: false
     # Calculate RNA velocity based on La Manno et al. 2018 logic
     lamanno: false
     # Calculate RNA velocity on single-nucleus RNA-seq reads
     nucleus: false
     # misc
-    threads: 16
+    threads: 8
     memory_per_cpu: 4

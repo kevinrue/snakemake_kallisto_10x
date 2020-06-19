@@ -47,9 +47,9 @@ rule kb_count:
     input:
         get_fastqs
     output:
-        "results/kb/{sample}/output.bus"
+        directory("results/kb/{sample}")
     params:
-        output_folder=lambda wildcards, output: output[0].replace("test", ""),
+        output_folder=lambda wildcards, output: output[0].replace("output.bus/output.bus", ""),
         index="resources/kb/index.idx",
         t2g="resources/kb/t2g.txt",
         technology=config["kb"]["technology"],
@@ -71,6 +71,6 @@ rule kb_count:
         -t {params.threads} \
         -m {params.memory}G \
         {params.extra_options} \
-        -o {params.output_folder} \
+        -o {output} \
         {input} 2> {log}
         """
