@@ -1,0 +1,7 @@
+# conda environments needed for the workflow should be stored here.
+name: kallisto
+channels:
+- bioconda
+dependencies:
+- kallisto=0.46.2=h4f7b962_1
+- pip=20.1.1=py_1
