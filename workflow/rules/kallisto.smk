@@ -54,11 +54,9 @@ rule kb_count:
         t2g="resources/kb/t2g.txt",
         technology=config["kb"]["technology"],
         extra_options=get_count_options(),
-        memory=config['kb']['memory_per_cpu'] * config['kb']['threads'],
+        memory=config['kb']['memory_per_cpu'],
         threads=config['kb']['threads']
-    log:
-        out="results/logs/kb_count/{sample}.out",
-        err="results/logs/kb_count/{sample}.err"
+    log: "results/logs/kb_count/{sample}.err"
     conda:
         "../envs/kallisto.yaml"
     threads: config['kb']['threads']
@@ -74,5 +72,5 @@ rule kb_count:
         -m {params.memory}G \
         {params.extra_options} \
         -o {params.output_folder} \
-        {input} 2> {log.err} > {log.out}
+        {input} 2> {log}
         """

@@ -23,4 +23,4 @@ kb:
     nucleus: false
     # misc
     threads: 16
-    memory_per_cpu: 8
+    memory_per_cpu: 4
