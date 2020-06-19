@@ -1,3 +1,2 @@
-sample	condition
-A	untreated
-B	treated
+sample	fastqs
+pbmc_1k_v3	/ifs/mirror/10xgenomics/pbmc_1k_v3_fastqs

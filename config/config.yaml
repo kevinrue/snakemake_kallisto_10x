@@ -3,6 +3,24 @@
 # one row per sample. It can be parsed easily via pandas.
 samples: "config/samples.tsv"
 
+pattern:
+    # Pattern matching the filename of paired reads
+    read1: "_R1_001.fastq.gz"
+    read2: "_R2_001.fastq.gz"
+
 kb:
-    # pre-built kallisto index
+    # Download pre-built kallisto index
     species: "human"
+    # Single-cell technology used
+    technology: "10XV3"
+    # Generate loom file from count matrix
+    loom: false
+    # Generate h5ad file from count matrix
+    h5ad: true
+    # Calculate RNA velocity based on La Manno et al. 2018 logic
+    lamanno: false
+    # Calculate RNA velocity on single-nucleus RNA-seq reads
+    nucleus: false
+    # misc
+    threads: 16
+    memory_per_cpu: 8

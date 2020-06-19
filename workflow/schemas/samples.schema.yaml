@@ -7,11 +7,11 @@ properties:
   sample:
     type: string
     description: sample name/identifier
-  condition:
+  fastqs:
     type: string
-    description: sample condition that will be compared during differential analysis (e.g. a treatment, a tissue time, a disease)
+    description: path to the folder that contains FASTQ files
 
 # columns that the config/samples.tsv file must have to pass schema validation
 required:
   - sample
-  - condition
+  - fastqs
