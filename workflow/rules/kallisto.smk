@@ -47,9 +47,8 @@ rule kb_count:
     input:
         get_fastqs
     output:
-        directory("results/kb/{sample}")
+        "results/kb/{sample}/output.bus"
     params:
-        output_folder=lambda wildcards, output: output[0].replace("output.bus/output.bus", ""),
         index="resources/kb/index.idx",
         t2g="resources/kb/t2g.txt",
         technology=config["kb"]["technology"],
@@ -61,7 +60,7 @@ rule kb_count:
         "../envs/kallisto.yaml"
     threads: config['kb']['threads']
     resources:
-        mem_free_gb=config['kb']['memory_per_cpu']
+        mem_free_gb=config['kb']['memory_per_cpu'] + 1
     shell:
         """
         kb count \
@@ -71,6 +70,6 @@ rule kb_count:
         -t {params.threads} \
         -m {params.memory}G \
         {params.extra_options} \
-        -o {output} \
+        -o results/kb/{wildcards.sample} \
         {input} 2> {log}
         """
