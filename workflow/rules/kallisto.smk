@@ -25,22 +25,28 @@ rule kb_ref:
         
 def get_count_options():
     '''
+    TODO: test and document.
     '''
     option_list = []
     
-    if config['kb']['loom']:
-        option_list.append(" --loom")
-    
     if config['kb']['h5ad']:
-        option_list.append(" --h5ad")
-    
-    if config['kb']['lamanno']:
-        option_list.append(" --lamanno")
-    
-    if config['kb']['nucleus']:
-        option_list.append(" --nucleus")
+        option_list.append("--h5ad")
     
     return " ".join(option_list)
+
+        
+def get_filter_option():
+    '''
+    TODO: test and document.
+    '''    
+    filter_choice = config['kb']['filter']
+    
+    if filter_choice != "":
+        filter_option = f"--filter {filter_choice}"
+    else:
+        filter_option = ""
+    
+    return filter_option
     
 
 rule kb_count:
@@ -52,7 +58,8 @@ rule kb_count:
         index="resources/kb/index.idx",
         t2g="resources/kb/t2g.txt",
         technology=config["kb"]["technology"],
-        extra_options=get_count_options(),
+        filter_option=get_filter_option(),
+        count_options=get_count_options(),
         memory=config['kb']['memory_per_cpu'],
         threads=config['kb']['threads']
     log: "results/logs/kb_count/{sample}.err"
@@ -71,7 +78,8 @@ rule kb_count:
         -t {params.threads} \
         -m {params.memory}G \
         -x {params.technology} \
-        {params.extra_options} \
+        {params.filter_option} \
+        {params.count_options} \
         -o results/kb/{wildcards.sample} \
         {input} 2> {log}
         """

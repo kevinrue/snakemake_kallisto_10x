@@ -13,10 +13,12 @@ kb:
     species: "human"
     # Single-cell technology used
     technology: "10XV3"
+    # Produce a filtered gene count matrix (default: bustools)
+    filter: "bustools"
     # Generate loom file from count matrix
     loom: false
     # Generate h5ad file from count matrix
-    h5ad: false
+    h5ad: true
     # Calculate RNA velocity based on La Manno et al. 2018 logic
     lamanno: false
     # Calculate RNA velocity on single-nucleus RNA-seq reads
