@@ -63,12 +63,14 @@ rule kb_count:
         mem_free_gb=config['kb']['memory_per_cpu'] + 1
     shell:
         """
+        rm -rf results/kb/{wildcards.sample} &&
         kb count \
         -i {params.index} \
         -g {params.t2g} \
-        -x {params.technology} \
+        --overwrite \
         -t {params.threads} \
         -m {params.memory}G \
+        -x {params.technology} \
         {params.extra_options} \
         -o results/kb/{wildcards.sample} \
         {input} 2> {log}
